@@ -15,14 +15,11 @@ class TestReviewClass(unittest.TestCase):
 
     def test_edit_comment(self):
         review = Review("user2", 3, "Good product!")
-
-        # Initially, the comment is not edited
+        
         self.assertFalse(review.is_edited())
-
-        # Edit the comment
+        
         review.edit_comment("Updated comment!")
-
-        # Check if the comment is updated
+        
         self.assertEqual(review.comment(), "Updated comment!")
         self.assertTrue(review.is_edited())
 
