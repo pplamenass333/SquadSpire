@@ -1,4 +1,6 @@
 import board
+from client_request import ClientRequest
+from server_response import ServerResponse
 
 import socket
 import threading
@@ -12,15 +14,16 @@ def handle_client(client_socket, addr):
         if not raw_client_request:
             break
 
-        client_request = pickle.loads(raw_client_request)
+        processed_client_request = pickle.loads(raw_client_request)
 
         #   do something with the request
-        if client_request == "stop server":
+        if processed_client_request.message == "stop server":
             server_is_on = False
-        server_response = f"Server received: {client_request}"
-        print(server_response)
+        client_request_message = processed_client_request.message
+        processed_server_response = ServerResponse(f"Server received: {client_request_message}")
+        print(processed_server_response.message)
 
-        raw_server_response = pickle.dumps(server_response)
+        raw_server_response = pickle.dumps(processed_server_response)
 
         client_socket.send(raw_server_response)
 
