@@ -9,6 +9,7 @@ class User:
         self.description = description
         self.hobbies = hobbies
         self.interests = interests
+        
         self.history = []
         self.reviews = []
         self.friends = []

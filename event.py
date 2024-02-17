@@ -3,18 +3,18 @@ import review
 
 
 class Categories(Enum):
-    PARTY = 0
-    FESTIVAL = 1
-    CONCERT = 2
-    FOOTBALL_GAME = 3
-    BASKETBALL_GAME = 4
+    PARTY
+    FESTIVAL
+    CONCERT
+    FOOTBALL_GAME
+    BASKETBALL_GAME
 
 
 class Criteria(Enum):
-    MALE_ONLY = 0
-    FEMALE_ONLY = 1
-    R18 = 2
-    UNDER_30 = 3
+    MALE_ONLY
+    FEMALE_ONLY
+    R18
+    UNDER_30
 
 
 class Event:
