@@ -1,20 +1,22 @@
 import chat
 import review
 
+from enum import Enum, auto
+
 
 class Categories(Enum):
-    PARTY
-    FESTIVAL
-    CONCERT
-    FOOTBALL_GAME
-    BASKETBALL_GAME
+    PARTY = auto()
+    FESTIVAL = auto()
+    CONCERT = auto()
+    FOOTBALL_GAME = auto()
+    BASKETBALL_GAME = auto()
 
 
 class Criteria(Enum):
-    MALE_ONLY
-    FEMALE_ONLY
-    R18
-    UNDER_30
+    MALE_ONLY = auto()
+    FEMALE_ONLY = auto()
+    R18 = auto()
+    UNDER_30 = auto()
 
 
 class Event:

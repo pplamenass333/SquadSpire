@@ -1,9 +1,10 @@
+from enum import Enum, auto
 
 
 class Gender(Enum):
-    MALE
-    FEMALE
-    OTHER
+    MALE = auto()
+    FEMALE = auto()
+    OTHER = auto()
 
 
 class User:
