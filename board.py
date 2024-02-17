@@ -7,5 +7,5 @@ class Board:
     def upload_to_server(self):
         pass
 
-    def download_from_server():
+    def download_from_server(self):
         pass
