@@ -19,5 +19,5 @@ class User:
     def add_review(self, review):
         self.reviews.append(review)
 
-    def add_friend(self, friend):
-        self.friends.append(friend)
+    def add_friend(self, username):
+        self.friends.append(username)
