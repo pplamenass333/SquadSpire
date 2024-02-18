@@ -8,7 +8,7 @@ class Board:
         def download_from_server(self):
             pass
 
-        #   if the jango server has saved the board
+        #   if the django server has saved the board
         #
         #   if 
         #       download_from_server()
