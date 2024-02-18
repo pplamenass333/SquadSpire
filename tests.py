@@ -3,6 +3,7 @@ import unittest
 from enum import Enum, auto
 from review import Review
 import user
+from event import Event, Categories, Criteria, EventChat
 
 class TestReviewClass(unittest.TestCase):
 
@@ -66,6 +67,62 @@ class TestUserClass(unittest.TestCase):
         user.add_friend("Tervel Pulev") 
         user.remove_friend("Tervel Pulev")
         self.assertEqual(user.friends(), [])
+
+
+
+class TestEventClass(unittest.TestCase):
+
+    def setUp(self):
+        self.event = Event("Party", "user1", Criteria.MALE_ONLY, Categories.PARTY, 10)
+        self.event.add_person("user2")
+        self.review1 = Review("user1", 5, "Great event!")
+        self.review2 = Review("user2", 4, "Good event!")
+        
+    def test_event_creation(self):
+        self.assertEqual(self.event.title, "Party")
+        self.assertEqual(self.event.initiator_username(), "user1")
+        self.assertEqual(self.event.criteria, Criteria.MALE_ONLY)
+        self.assertEqual(self.event.categories, Categories.PARTY)
+        self.assertEqual(self.event.total_people_required(), 10)
+        self.assertEqual(self.event.participants_count(), 1)
+
+    def test_add_person(self):
+        self.event.add_person("user3")
+        self.assertEqual(self.event.participants_count(), 2)
+
+    def test_remove_person(self):
+        self.event.remove_person("user2")
+        self.assertEqual(self.event.participants_count(), 0)
+
+    def test_add_review(self):
+        self.event.add_review(self.review1)
+        self.assertEqual(len(self.event.reviews), 1)
+
+    def test_edit_review(self):
+        self.event.add_review(self.review1)
+        self.event.edit_review(0, "Updated comment!")
+        self.assertEqual(self.event.reviews[0].comment(), "Updated comment!")
+
+    def test_delete_review(self):
+        self.event.add_review(self.review1)
+        self.event.add_review(self.review2)
+        self.event.delete_review(0)
+        self.assertEqual(len(self.event.reviews), 1)
+
+    def test_send_message(self):
+        self.event.send_message("Hello everyone!")
+        self.assertEqual(len(self.event._Event__event_chat.messages), 1)
+
+    def test_edit_message(self):
+        self.event.send_message("Hello everyone!")
+        self.event.edit_message(0, "Updated message!")
+        self.assertEqual(self.event._Event__event_chat.messages[0], "Updated message!")
+
+    def test_delete_message(self):
+        self.event.send_message("Hello everyone!")
+        self.event.delete_message(0)
+        self.assertEqual(len(self.event._Event__event_chat.messages), 0)
+
 
 if __name__ == '__main__':
     unittest.main()
